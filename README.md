@@ -1,2 +1,2 @@
-# personal-assistant
-This my desktop personal assistant! It's just good with basic things still developing it and try to make it work offline
+# Personal-Assistant
+This my desktop personal assistant! It's just good with basic things.Still developing it and trying to make it work offline
