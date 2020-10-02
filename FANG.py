@@ -8,6 +8,8 @@ webbrowser.register('chrome',
 import wikipedia
 import os
 import random
+import time
+import ctypes
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -20,13 +22,18 @@ def speak(audio):
 
 def wishme():
     hour = int(datetime.datetime.now().hour)
-    if hour>=5 and hour<12:
+    if hour>=5and hour<12:
         speak("Good Morning! saakeath");print("Good Morining saketh!")
     elif hour>=12 and hour<17:
         speak("Good Afternoon! saakeath");print("Good Afternoon saketh!")
-    elif hour>=17 and hour<20:
-        speak("Good Evening! saakeath");print("Good Evening saketh!")
-    elif hour<=23 and hour<4:
+    elif hour>=17 and hour<21:
+        speak("Good Evening saakeath!");print("Good Evening saketh!")
+    elif hour>=21 and hour<24 :
+        speak("Good Night saakeath");print("Good Night Saketh!")
+        speak("Don't mind ")
+        speak("why are you still awake saakeath!");print("Dont Mind!\tWhy are you still awake saketh?")
+        speak("go and have some sleep we can do work tomorrow");print('Go and have some sleep,we can do work tomorrow!')
+    elif hour>=0 and hour <5:
         speak("Good Night saakeath");print("Good Night Saketh!")
         speak("Don't mind ")
         speak("why are you still awake saakeath!");print("Dont Mind!\tWhy are you still awake saketh?")
@@ -42,7 +49,7 @@ def takecommand():
         audio = r.listen(source)
     try:
         print("Recognizing...")
-        query = r.recognize_google(audio, language='en-in')
+        query = r.recognize_google(audio, language='en-us')
         print(f"User said: {query}\n")
     except Exception as e:
         # print(e)
@@ -141,3 +148,43 @@ if __name__ == "__main__":
                 fh.write(f"{text}\n")
             print("Okay Sir I Will Remind You")
             speak("Okay Sir I Will Remind You")
+            
+        elif "change my name to" in text:
+            query = text.replace("change my name to", "")
+            assname = query
+
+        elif "change name" in text:
+            speak("What would you like to call me, Sir ")
+            assname = takecommand()
+            speak("Thanks for naming me")
+
+        elif "what's your name" in text or "What is your name" in text:
+            speak("My friends call me")
+            speak(assname)
+            print("My friends call me", assname)
+
+        elif 'exit' in text:
+            speak("Thanks for giving me your time")
+            exit()
+
+        elif "who made you" in text or "who created you" in text:
+            speak("I have been created by Saakeath!")
+
+
+        elif 'lock window' in text:
+            speak("locking the device")
+            ctypes.windll.user32.LockWorkStation()
+
+        elif "don't listen" in text or "stop listening" in text:
+            speak("for how much time you want to stop jarvis from listening commands")
+            a = int(takecommand())
+            time.sleep(a)
+            print(a)
+        elif "will you be my gf" in text or "will you be my bf" in text:
+            speak("I'm not sure about, may be you should give me some time")
+
+        elif "how are you" in text:
+            speak("I'm fine, glad you mean that")
+
+        elif "i love you" or "can you love me" or "love me please" in text:
+            speak(" soryy,It's hard to understand")
