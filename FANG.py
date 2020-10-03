@@ -10,6 +10,9 @@ import os
 import random
 import time
 import ctypes
+import requests
+import json
+from googletrans import Translator
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -23,9 +26,9 @@ def speak(audio):
 def wishme():
     hour = int(datetime.datetime.now().hour)
     if hour>=5and hour<12:
-        speak("Good Morning! saakeath");print("Good Morining saketh!")
+        speak("Good Morning saakeath!");print("Good Morining saketh!")
     elif hour>=12 and hour<17:
-        speak("Good Afternoon! saakeath");print("Good Afternoon saketh!")
+        speak("Good Afternoon saakeath!");print("Good Afternoon saketh!")
     elif hour>=17 and hour<21:
         speak("Good Evening saakeath!");print("Good Evening saketh!")
     elif hour>=21 and hour<24 :
@@ -132,7 +135,8 @@ if __name__ == "__main__":
             #print("I Can Push Your Repositries To Your Github");speak("I Can Push Your Repositries To Your Github")
             print("I Can Play Your Favourite Music");speak("I Can Play Your Favourite Music")
             print("I Can Set Reminders For You");speak("I Can Set Reminders For You")
-            print("I Also Care For You, So I Will Remind You To Drink Water After Every 45 Minutes");speak("I Also Care For You, So I Will Remind You To Drink Water After Every 45 Minutes")
+            print("I Also Care For You, So I Will Remind You To Drink Water After Every 45 Minutes");
+	    speak("I Also Care For You, So I Will Remind You To Drink Water After Every 45 Minutes")
 
         #elif 'plans' in text:
             #for pn in f:
@@ -148,7 +152,7 @@ if __name__ == "__main__":
                 fh.write(f"{text}\n")
             print("Okay Sir I Will Remind You")
             speak("Okay Sir I Will Remind You")
-            
+
         elif "change my name to" in text:
             query = text.replace("change my name to", "")
             assname = query
@@ -170,6 +174,18 @@ if __name__ == "__main__":
         elif "who made you" in text or "who created you" in text:
             speak("I have been created by Saakeath!")
 
+        elif 'translate' in text:
+            query = text.replace(' translate', "")
+            translator = Translator()
+            dt = translator.detect(query)
+            print("Input language",dt)
+            dest =str(input("Enter the destination language code"))  # ex: english-'en',japanese-'ja',korean-'ko',french='fr' etc..,
+            translated = translator.translate(text, dest=dest)
+            print(translated.text);speak("translated")
+            time.sleep(3)
+            #speak("do you want me to pronounce")
+            #if 'yes' in text:
+                #speak(translated.text)
 
         elif 'lock window' in text:
             speak("locking the device")
@@ -184,7 +200,34 @@ if __name__ == "__main__":
             speak("I'm not sure about, may be you should give me some time")
 
         elif "how are you" in text:
-            speak("I'm fine, glad you mean that")
+            speak("I'm fine, glad you mean that");speak("I'm fine,glad you mean that")
 
-        elif "i love you" or "can you love me" or "love me please" in text:
-            speak(" soryy,It's hard to understand")
+        elif "i love you" in text:
+            speak("sorry , its hard to understand such hypothetical things ");print("sorry,its hard to understand such hypothetical things ")
+        elif "can you love me" in text:
+            speak("sorry , i dont love you but i care for you");print("sorry,i cant love you but i care for you")
+
+        elif 'read news' in text:
+            def speak(strr):
+                from win32com.client import Dispatch
+                speak = Dispatch("SAPI.SpVoice")
+                speak.speak(strr)
+            url = "http://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=7d252cc8b0624836b5fc14a1cedf295c"
+            data = requests.get(url).text
+            dict1 = json.loads(data)
+            speak("Todays Entertainment News of India are")
+            for i, art in enumerate(dict1["articles"]):
+                print("\nHeadline No :", i + 1, "\n")
+                print(art["title"])
+                speak(art["title"])
+                if i != len(dict1["articles"]) - 1:
+                    speak("Next headline is")
+                else:
+                    speak("News Ended")
+                    print("News Emded")
+
+
+
+
+
+
