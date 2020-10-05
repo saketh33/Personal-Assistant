@@ -135,8 +135,7 @@ if __name__ == "__main__":
             #print("I Can Push Your Repositries To Your Github");speak("I Can Push Your Repositries To Your Github")
             print("I Can Play Your Favourite Music");speak("I Can Play Your Favourite Music")
             print("I Can Set Reminders For You");speak("I Can Set Reminders For You")
-            print("I Also Care For You, So I Will Remind You To Drink Water After Every 45 Minutes");
-	    speak("I Also Care For You, So I Will Remind You To Drink Water After Every 45 Minutes")
+            print("I Also Care For You, So I Will Remind You To Drink Water After Every 45 Minutes");speak("I Also Care For You, So I Will Remind You To Drink Water After Every 45 Minutes")
 
         #elif 'plans' in text:
             #for pn in f:
