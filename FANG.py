@@ -4,9 +4,9 @@ import speech_recognition as sr
 import webbrowser
 webbrowser.register('chrome',
 	                 None,
-	                 webbrowser.BackgroundBrowser("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"))
-import wikipedia
-import os
+	                 webbrowser.BackgroundBrowser("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"))                     
+import wikipedia                                            #sometimes you may have google in program files(x86).Be aware of location
+import os 
 import random
 import time
 import ctypes
@@ -77,7 +77,7 @@ if __name__ == "__main__":
 
         elif 'open google' in text:
             speak("opening google")
-            webbrowser.get('chrome').open("google.com")
+            webbrowser.get('chrome').open("google.com")    #like stackoverflow,coursera,geeks for geeks,medium etc..,
 
         elif 'open github' in text:
             speak("opening github")
@@ -113,7 +113,7 @@ if __name__ == "__main__":
             code=command[-1]
             lst=['waste','heart']
             if code in lst:
-                codepath = ("C:\\Users\\saketh\\PycharmProjects\\untitled\\" + code + ".py")
+                codepath = ("C:\\Users\\saketh\\PycharmProjects\\untitled\\" + code + ".py")   #give your correct location of codes
                 speak("opening code")
                 os.startfile(codepath)
             else:
@@ -182,9 +182,6 @@ if __name__ == "__main__":
             translated = translator.translate(text, dest=dest)
             print(translated.text);speak("translated")
             time.sleep(3)
-            #speak("do you want me to pronounce")
-            #if 'yes' in text:
-                #speak(translated.text)
 
         elif 'lock window' in text:
             speak("locking the device")
