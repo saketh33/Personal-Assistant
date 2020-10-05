@@ -137,10 +137,6 @@ if __name__ == "__main__":
             print("I Can Set Reminders For You");speak("I Can Set Reminders For You")
             print("I Also Care For You, So I Will Remind You To Drink Water After Every 45 Minutes");speak("I Also Care For You, So I Will Remind You To Drink Water After Every 45 Minutes")
 
-        #elif 'plans' in text:
-            #for pn in f:
-                #print(pn)
-                #speak(pn)
         elif 'remind' in text:
             with open("reminder.txt", "a") as fh:
                 text.replace("remind", "")
@@ -167,11 +163,11 @@ if __name__ == "__main__":
             print("My friends call me", assname)
 
         elif 'exit' in text:
-            speak("Thanks for giving me your time")
+            speak("Byee!,have a good day")
             exit()
 
         elif "who made you" in text or "who created you" in text:
-            speak("I have been created by Saakeath!")
+            speak("I have been created by Saakeath!");print("I've been creaed by SAKETH)
 
         elif 'translate' in text:
             query = text.replace(' translate', "")
@@ -184,7 +180,7 @@ if __name__ == "__main__":
             time.sleep(3)
 
         elif 'lock window' in text:
-            speak("locking the device")
+            speak("locking the device");print("LOCKED device")
             ctypes.windll.user32.LockWorkStation()
 
         elif "don't listen" in text or "stop listening" in text:
@@ -193,10 +189,10 @@ if __name__ == "__main__":
             time.sleep(a)
             print(a)
         elif "will you be my gf" in text or "will you be my bf" in text:
-            speak("I'm not sure about, may be you should give me some time")
+            speak("I'm not sure about, may be you should give me some time");print("I'm not sure about, may be you should give me some time")
 
         elif "how are you" in text:
-            speak("I'm fine, glad you mean that");speak("I'm fine,glad you mean that")
+            speak("I'm fine, glad you mean that");print("I'm fine,glad you mean that")
 
         elif "i love you" in text:
             speak("sorry , its hard to understand such hypothetical things ");print("sorry,its hard to understand such hypothetical things ")
